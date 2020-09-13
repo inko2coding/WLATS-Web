@@ -930,7 +930,7 @@ table tr td span.saturday {
 
 /* end of redirection page */
 
-@media (max-width: 991px) {
+@media (max-width: 1080px) {
     body img {
         width: 100%;
     }
@@ -1153,6 +1153,8 @@ table tr td span.saturday {
 .registration {
     margin-top: 100px;
     margin-bottom: -200px;
+    word-wrap: break-word !important;
+    overflow-wrap: break-word !important;
 }
 
 .registration .steps {
@@ -1186,6 +1188,34 @@ table tr td span.saturday {
 
 .linkreg {
     color: rgb(255, 153, 0);
+}
+
+@media only screen and (max-width: 733px) {
+    .steps img {
+        display: none;
+    }
+    .registration .steps {
+        box-shadow: none;
+    }
+    .registration .steps .step-1 {
+        width: 350px;
+        margin: 20px;
+    }
+    .registration .steps .step-2 {
+        width: 350px;
+        margin: 20px;
+    }
+}
+
+@media only screen and (max-width: 412px) {
+    .registration .steps .step-1 {
+        width: 170px;
+        margin: 10px;
+    }
+    .registration .steps .step-2 {
+        width: 170px;
+        margin: 10px;
+    }
 }
 
 
