@@ -1251,6 +1251,7 @@ table tr td span.saturday {
     display: flex;
     margin-top: -150px;
     justify-content: center;
+    flex-wrap: wrap;
     margin-bottom: 100px;
 }
 
@@ -1263,12 +1264,29 @@ table tr td span.saturday {
     height: 240px;
     position: relative;
     bottom: 50px;
+    margin-top: 30px;
 }
 
 .about-us-page .how-started {
     display: flex;
     justify-content: center;
+    flex-wrap: wrap;
     margin-bottom: -150px;
+}
+
+@media only screen and (max-width: 535px) {
+    .about-us-page p {
+        width: 300px;
+    }
+    .about-us-page img {
+        display: none;
+    }
+}
+
+@media only screen and (max-width: 324px) {
+    .about-us-page p {
+        width: 200px;
+    }
 }
 
 
