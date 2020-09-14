@@ -761,8 +761,7 @@
         const calendarDate = new Date();
         const dateCheck = document.getElementById('monthtest');
         const dayCheck = document.getElementById('daytest');
-        var d = new Date();
-        var day = dayNames[d.getDate()];
+        var day = dayNames[calendarDate.getDate()];
         var month = monthNames[calendarDate.getMonth()];
         dayCheck.innerHTML = `${day}`;
         dateCheck.innerHTML = `${month}`;
