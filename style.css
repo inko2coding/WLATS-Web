@@ -1118,7 +1118,7 @@ table tr td span.saturday {
     margin-top: 100px;
 }
 
-.gallery .photo-albums .photo-album-1 a {
+.gallery .photo-albums .photo-album-1 .no-a {
     border: 1px solid black;
     padding: 5px;
     text-decoration: none;
@@ -1126,7 +1126,12 @@ table tr td span.saturday {
     width: fit-content;
 }
 
-.gallery .photo-albums .photo-album-1 a:hover {
+.no-a {
+    border: none;
+    padding: 0;
+}
+
+.gallery .photo-albums .photo-album-1 .no-a:hover {
     border: 1px solid grey;
     background: rgb(10, 207, 10);
     color: white;
@@ -1291,3 +1296,13 @@ table tr td span.saturday {
 
 
 /* end of about us */
+
+
+/* scroll bar */
+
+::-webkit-scrollbar-thumb {
+    background: none;
+}
+
+
+/* end of scroll bar */
