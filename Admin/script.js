@@ -4,8 +4,8 @@ const logInForm = document.getElementById('log-in-form');
 const nameError = document.getElementById('m-error');
 const passwordError = document.getElementById('p-error');
 const submitBtn = document.getElementById('log-in-btn');
-const usernameName = 'BethAdmin#01';
-const passwordName = 'Beth';
+const usernameName = 'WLAT$_Web';
+const passwordName = 'WestLATS';
 
 logInForm.addEventListener('submit', (e) => {
     let errorMessages = [];
