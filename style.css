@@ -566,8 +566,16 @@ footer h2 {
 .cal .legend-key {
     border: 2px solid rgb(129, 126, 126);
     padding: 20px;
-    width: 250px;
+    height: 50px;
+    width: 500px;
     margin: 20px;
+    display: flex;
+}
+
+.legend-key .curmonth,
+.legend-key .curday,
+.legend-key .saturclass {
+    margin: -5px auto;
 }
 
 .legend-key .curmonth:before {
