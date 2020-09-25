@@ -1314,3 +1314,90 @@ table tr td span.saturday {
 
 
 /* end of scroll bar */
+
+
+/* member page */
+
+.body.staff {
+    color: black;
+    text-align: center;
+}
+
+.staff .tamil-class {
+    margin-bottom: 350px;
+}
+
+.staff .left {
+    margin-top: -100px;
+    display: flex;
+    position: fixed;
+    flex-direction: column;
+    margin-bottom: 100px;
+    z-index: 2;
+}
+
+.staff .left img {
+    width: 200px;
+    height: 200px;
+    margin-left: 50px;
+    margin-bottom: 20px;
+    border: 1px solid rgb(54, 50, 50);
+    border-radius: 50%;
+}
+
+.staff .left span {
+    margin-bottom: 20px;
+}
+
+.staff .tamil-class .right {
+    margin-left: 300px;
+    margin-top: -200px;
+}
+
+.staff .tamil-class .right .people .person img {
+    width: 120px;
+    height: 100px;
+}
+
+.staff .tamil-class .right .people .person {
+    display: flex;
+    flex-direction: column;
+    margin: 20px;
+}
+
+.staff .tamil-class .right .people {
+    display: flex;
+    position: relative;
+    flex-wrap: wrap;
+}
+
+.staff hr {
+    width: 80%;
+    margin-left: 300px;
+}
+
+
+/* media queries */
+
+@media only screen and (max-width: 490px) {
+    .staff .tamil-class .left img {
+        width: 150px;
+        height: 150px;
+    }
+    .staff .tamil-class .right .people .person img {
+        width: 100px;
+        height: 80px;
+    }
+    .staff .tamil-class .right {
+        margin-left: 200px;
+    }
+}
+
+@media only screen and (max-width: 350px) {
+    .staff .tamil-class .right .people .person {
+        display: none;
+    }
+}
+
+
+/* end of member page */
