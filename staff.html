@@ -62,15 +62,43 @@
         </div>
     </div> -->
     <div class="body staff">
+        <div id="over-member" class="left">
+            <h2 id="class-name">Committee Members</h2>
+            <img src="images/Kumar.png" alt="" id="p-teacher">
+            <span id="p-teacher-name">Principal: Kumaravel</span>
+            <img src="images/Sivakumar.png" alt="" id="a-teacher">
+            <span id="a-teacher-name">Vice Principal: Sivakumar</span>
+        </div>
         <div class="all-class">
+            <div class="tamil-class" id="committee">
+
+                <div class="right">
+                    <div class="people">
+                        <div class="person">
+                            <img src="images/default-user-image.png" alt="" class="person">
+                            <span>Nagendran</span>
+                            <span>Position: Admin</span>
+                        </div>
+                        <div class="person">
+                            <img src="images/default-user-image.png" alt="" class="person">
+                            <span>Sukumar</span>
+                            <span>Position: Facility</span>
+                        </div>
+                        <div class="person">
+                            <img src="images/default-user-image.png" alt="" class="person">
+                            <span>Gubendran</span>
+                            <span>Position: Treasurer</span>
+                        </div>
+                        <div class="person">
+                            <img src="images/default-user-image.png" alt="" class="person">
+                            <span>Abirami</span>
+                            <span>Position: Events Coordinator</span>
+                        </div>
+                    </div>
+                </div><br><br>
+                <hr>
+            </div>
             <div id="preschool" class="tamil-class">
-                <div id="over-member" class="left">
-                    <h2 id="class-name">Preschool</h2>
-                    <img src="images/default-user-image.png" alt="" id="p-teacher">
-                    <span id="p-teacher-name">Primary Teacher: Pragadee</span>
-                    <img src="images/default-user-image.png" alt="" id="a-teacher">
-                    <span id="a-teacher-name">Assistant Teacher: Sivaprabha</span>
-                </div>
                 <div class="right">
                     <div class="people">
                         <div class="person">
@@ -442,7 +470,7 @@
                 </div>
             </div>
         </div>
-
+        <p class="footer-bottom-text">All Rights Reserved by &copy;West LA Tamil School. 2020. Powered by <a target="_blank" href="http://inko2.com">INKO2 Inc.</a></p>
     </footer>
     <script src="https://code.jquery.com/jquery-3.5.1.js"></script>
     <script type="text/javascript">
@@ -483,6 +511,7 @@
         const grade8 = document.getElementById('grade-8');
         const allClass = document.querySelector('.all-class');
         const footer = document.querySelector('footer');
+        const committee = document.getElementById('committee');
 
         function areaChange(area, className, assistantName, assistantImage, primaryName, primaryImage) {
             area.onmouseenter = function() {
@@ -517,7 +546,7 @@
         //     assistantTeacherName.innerHTML = `Assistant Teacher: :name:`;
         //     assistantTeacherImage.src = `images/default-user-image.png`;
         // }
-        areaChange(kindergarten, 'Kindergarten', 'Kavitha', 'Kumar.png', 'Priya', 'Priya.png');
+        areaChange(kindergarten, 'Kindergarten', 'Kavitha', 'default-user-image.png', 'Priya', 'default-user-image.png');
         // overMember.onmouseenter = function() {
         //     overMember.style.visibility = 'visible';
         //     tamilClassName.innerHTML = 'Kindergarten';
@@ -526,21 +555,31 @@
         //     assistantTeacherName.innerHTML = `Assistant Teacher: Sivakumar`;
         //     assistantTeacherImage.src = `images/Sivakumar.png`;
         // }
-        areaChange(grade1, 'Grade 1', 'Vimala', 'Vimala.png', 'Janani', 'default-user-image.png');
+        areaChange(grade1, 'Grade 1', 'Vimala', 'default-user-image.png', 'Janani', 'default-user-image.png');
         areaChange(grade2, 'Grade 2', 'Narmatha', 'default-user-image.png', 'Jothi Bala', 'default-user-image.png');
-        areaChange(grade3, 'Grade 3', 'Rameshwari', 'default-user-image.png', 'Aruna', 'Aruna.png');
-        areaChange(grade4A, 'Grade 4A', 'Hareni', 'default-user-image.png', 'Kavitha Bala', 'KavithaBala.png');
-        areaChange2(grade4B, 'Grade 4B', 'Bala', 'Bala.png');
+        areaChange(grade3, 'Grade 3', 'Rameshwari', 'default-user-image.png', 'Aruna', 'default-user-image.png');
+        areaChange(grade4A, 'Grade 4A', 'Hareni', 'default-user-image.png', 'Kavitha Bala', 'default-user-image.png');
+        areaChange2(grade4B, 'Grade 4B', 'Bala', 'default-user-image.png');
         areaChange2(grade5, 'Grade 5', 'Nandhini', 'default-user-image.png');
-        areaChange2(grade6, 'Grade 6', 'Aparna', 'Aparna.png');
-        areaChange2(grade7, 'Grade 7', 'Meenakshi', 'Meenakshi.png');
-        areaChange2(grade8, 'Grade 8', 'Jothi', 'Jothi.png');
+        areaChange2(grade6, 'Grade 6', 'Aparna', 'default-user-image.png');
+        areaChange2(grade7, 'Grade 7', 'Meenakshi', 'default-user-image.png');
+        areaChange2(grade8, 'Grade 8', 'Jothi', 'default-user-image.png');
 
         allClass.onmouseenter = function() {
             overMember.style.display = 'flex';
         }
         footer.onmouseenter = function() {
             overMember.style.display = 'none';
+        }
+        committee.onmouseenter = function() {
+            overMember.style.visibility = 'visible';
+            tamilClassName.innerHTML = 'Committee Members';
+            primaryTeacherName.innerHTML = `Principal: Kumaravel`;
+            primaryTeacherImage.src = `images/default-user-image.png`;
+            assistantTeacherName.innerHTML = `Vice Principal: Sivakumar`;
+            assistantTeacherImage.src = `images/default-user-image.png`;
+            assistantTeacherName.style.display = 'block';
+            assistantTeacherImage.style.display = `block`;
         }
     </script>
 </body>
