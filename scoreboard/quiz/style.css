@@ -3,27 +3,21 @@
     margin: 0;
     padding: 0;
     font-family: 'Piazzolla', serif;
+    color: black;
 }
 
 main {
     display: none;
     justify-content: space-around;
     padding-top: 40px;
+    margin-bottom: -250px;
 }
 
 body {
     background: rgb(206, 184, 184);
 }
 
-footer {
-    display: flex;
-    flex: 2;
-    width: 100%;
-    padding: 20px;
-    position: fixed;
-    bottom: 0;
-    background: #40c3ff;
-}
+
 
 footer span {
     margin-left: 40px;
@@ -113,6 +107,7 @@ footer span {
 
 #finish-btn {
     margin: 20px;
+    max-width: 100px;
     padding: 5px 8px;
     background: rgb(255, 0, 212);
     border: transparent;
