@@ -87,7 +87,7 @@ footer span {
     display: flex;
     flex-direction: column;
     align-items: center;
-    margin-top: 200px;
+    margin-top: 100px;
 }
 
 .enter input {
@@ -123,4 +123,65 @@ footer span {
 
 .alert {
     margin: 0 20px;
+}
+
+.iframe-enter button {
+    width: 140px;
+    padding: 5px 0;
+    border: transparent;
+    background-color: rgb(23, 184, 23);
+}
+
+.iframe-enter input {
+    margin: 10px 20px;
+    width: 140px;
+    height: 30px;
+    border: 1px solid grey;
+    background-color: rgba(255, 255, 255, 0.6);
+}
+
+.iframe-enter {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    margin-top: 100px;
+    margin-bottom: -250px;
+}
+
+.error {
+    font-size: 13px;
+    margin-top: 5px;
+    margin-bottom: 10px;
+    display: none;
+}
+
+.iframe-steps {
+    font-size: 12px;
+    margin-top: 300px;
+    margin-left: 50px;
+}
+
+@media only screen and (max-width: 1317px) {
+    #iframe-enteres {
+        width: 380px;
+        height: 300px;
+    }
+}
+
+@media only screen and (max-width: 760px) {
+    main {
+        flex-direction: column;
+        align-items: center;
+    }
+
+    #iframe-enteres {
+        margin: 30px;
+    }
+}
+
+@media only screen and (max-width: 414px) {
+    #iframe-enteres {
+        width: 280px;
+        height: 220px;
+    }
 }

@@ -8,24 +8,39 @@
     <link rel="stylesheet" href="../../style.css">
     <link rel="stylesheet" href="style.css" type="text/css">
     <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.15.0/css/all.css" integrity="sha384-OLYO0LymqQ+uHXELyx93kblK5YIS3B2ZfLGBmsJaUyor7CpMTBsahDHByqSuWW+q" crossorigin="anonymous">
-    <title>WLATS Kindergarten Quiz</title>
+    <title>WLATS Scoreboard</title>
 </head>
 
 <body>
     <button id="finish-btn">Finish</button>
     <div id="enter-cont">
-        <span class="alert">Please make sure to fill out all the feilds or the functionalities will not work.</span class="alert">
+        <!-- <span class="alert">Please make sure to fill out all the feilds or the functionalities will not work.</span> -->
         <div class="enter">
 
-            <input type="text" name="name" id="name" placeholder="Student Name">
-            <input type="number" name="id_num" id="id_num" placeholder="ID #">
-            <button id="submit-btn" type="submit">Add Student</button>
+            <input type="text" name="name" id="name" placeholder="Teacher Name">
+            <p class="error" id="name-error"></p>
+            <input type="password" name="teacherCode" id="teacher-code" placeholder="Passcode">
+            <p class="error" id="code-error"></p>
+            <button id="submit-btn" type="submit">Enter Students</button>
         </div>
-        <div class="current-cont">
+        <!-- <div class="current-cont">  
             <h2>Current Students</h2>
             <div id="current">
 
             </div>
+        </div> -->
+        <div class="iframe-enter">
+            <input type="text" name="iframe" id="iframe-enter" placeholder="Slides URL">
+            <button type="submit" id="iframe-submit">Create Iframe</button>
+        </div>
+        <div class="iframe-steps">
+            <ol>
+                <li>Open Your Google Slides</li>
+                <li>Click File at the top</li>
+                <li>Click Publish To Web</li>
+                <li>Click Embed near the top of the popup</li>
+                <li>Copy everything between src="..."</li>
+            </ol>
         </div>
     </div>
     <main>
@@ -35,7 +50,7 @@
 
         </div>
 
-        <iframe src="https://docs.google.com/presentation/d/e/2PACX-1vTZUA8aCVOef0fxKwHsM0LxjNLyMoON0qgyHqO0dPAt225UUDjk113anZPXGMBcew/embed?start=false&loop=false&delayms=30000" frameborder="0" width="880" height="549" allowfullscreen="true" mozallowfullscreen="true"
+        <iframe id="iframe-enteres" src="" frameborder="0" width="880" height="549" allowfullscreen="true" mozallowfullscreen="true"
             webkitallowfullscreen="true"></iframe>
         <div class="timer">
             <h2>Time Left</h2>
@@ -55,13 +70,13 @@
                     <div class="col-md-3 col-ms-6 col-xs-12 segment-two md-mb-30 sm-mb-30">
                         <h2>Quick links</h2>
                         <ul>
-                            <li><a href="calendar.html">Top of page</a></li>
-                            <li><a href="home.html">Home</a></li>
-                            <li><a class="nav-act" href="staff.html">Members</a></li>
-                            <li><a href="registration.html">Registration</a></li>
-                            <li><a href="gallery.html">Gallery</a></li>
-                            <li><a href="about.html">About Us</a></li>
-                            <li><a href="contact.html">Contact Us</a></li>
+                            <li><a href="home.html">Top of page</a></li>
+                            <li><a href="../../home.html">Home</a></li>
+                            <li><a class="nav-act" href="../../staff.html">Members</a></li>
+                            <li><a href="../../registration.html">Registration</a></li>
+                            <li><a href="../../gallery.html">Gallery</a></li>
+                            <li><a href="../../about.html">About Us</a></li>
+                            <li><a href="../../contact.html">Contact Us</a></li>
                         </ul>
                     </div>
                     <div class="col-md-3 col-ms-6 col-xs-12 segment-three sm-mb-30">
@@ -86,6 +101,8 @@
         <p class="footer-bottom-text">All Rights Reserved by &copy;West LA Tamil School. 2020. Powered by <a target="_blank" href="http://inko2.com">INKO2 Inc.</a></p>
     </footer>
     <script>
+           
+            const iframeBtn = document.getElementById('iframe-submit');
             const finishBtn = document.getElementById('finish-btn');
             const submitBtn = document.getElementById('submit-btn');
             var students = [];
@@ -134,56 +151,343 @@
                                 document.getElementById(`point-${students[i].id_num}`).innerHTML = localStorage.getItem(`point-${students[i].id_num}`);
                             }
                     }
-
- 
                     location.href = '../quiz/home.html';
-
                 }
         };
 
- 
+        document.getElementById('iframe-enteres').src = localStorage.getItem('iframe-src');
+        iframeBtn.onclick = function() {
+            localStorage.setItem('iframe-src', document.getElementById('iframe-enter').value);
+            localStorage.setItem('finishClick', 'false');
+            location.href = '../quiz/home.html';
+        }
 
         function timeClick() {
-
             var timeInp = prompt('How many seconds would you like for your timer?');
-
- 
-
             if(timeInp) {
-
                 timer(parseInt(timeInp));
-
             } else if(timeInp == null || undefined) {
-
-                
-
             } else {
-
                 timer(20);
-
             }
-
         }
 
 
         
 
         submitBtn.onclick = function() {
-            if ((document.getElementById('id_num').value != null || undefined) && (document.getElementById('name').value != null || undefined)) {
-
+            // if(localStorage.getItem('id')) {
+            //     var idSet = parseInt(localStorage.getItem('id')) + 1;
+            //     localStorage.setItem('id', idSet.toString());
+            // } else {
+            //     localStorage.setItem('id', 1);
+            // }
+            var nameError = document.getElementById('name-error');
+            var codeError = document.getElementById('code-error');
+            var teacherNameEnter = document.getElementById('name');
+            var teacherCodeEnter = document.getElementById('teacher-code');
+            var teacherName = document.getElementById('name').value.toLowerCase();
+            var teacherCode = document.getElementById('teacher-code').value;
+            if((teacherName === 'pragadee' || teacherName === 'sivaprabha') && teacherCode === 'pre207wlats#5') {
                 students.push({
-                    name: document.getElementById('name').value,
-                    id_num: document.getElementById('id_num').value,
+                    name: 'Sai Krithik',
+                    id_num: 1,
+                }, {
+                    name: 'Mridhulaa',
+                    id_num: 2,
+                },{
+                    name: 'Dhruv R.',
+                    id_num: 3,
+                }, {
+                    name: 'Dhruv N.',
+                    id_num: 4,
+                }, {
+                    name: 'Advit',
+                    id_num: 5,
+                }, {
+                    name: 'Nithila',
+                    id_num: 6,
+                }, {
+                    name: 'Tushil',
+                    id_num: 7,
+                });
+                teacherNameEnter.style.border = '1px solid green';
+                teacherCodeEnter.style.border = '1px solid green';
+                nameError.innerHTML = 'Thank You';
+                codeError.innerHTML = 'Thank You';
+                nameError.style.color = 'green';
+                codeError.style.color = 'green';
+            } else if ((teacherName === 'priya' || teacherName === 'kavitha gubs') && teacherCode === 'kg112wlats#5') {
+                students.push({
+                    name: 'Adithi',
+                    id_num: 1,
+                }, {
+                    name: 'Anishvar',
+                    id_num: 2,
+                }, {
+                    name: 'Thanish',
+                    id_num: 3,
+                }, {
+                    name: 'Varun',
+                    id_num: 4,
+                }, {
+                    name: 'Sarvan',
+                    id_num: 5,
+                }, {
+                    name: 'Iniya',
+                    id_num: 6,
+                }, {
+                    name: 'Vishak',
+                    id_num: 7,
+                }, {
+                    name: 'Vijittasree',
+                    id_num: 8,
+                }, {
+                    name: 'Harishram',
+                    id_num: 9,
+                }, {
+                    name: 'Sai Madhulika',
+                    id_num: 10,
+                }, {
+                    name: 'Vibha',
+                    id_num: 11,
+                }, {
+                    name: 'Aniketh Yajur',
+                    id_num: 12,
                 })
-
-                localStorage.setItem('students', JSON.stringify(students));
-
-                document.getElementById('current').innerHTML += `<h3 id="student-${document.getElementById('id_num').value}">${document.getElementById('name').value}<br></h3>`;
+                teacherNameEnter.style.border = '1px solid green';
+                teacherCodeEnter.style.border = '1px solid green';
+                nameError.innerHTML = 'Thank You';
+                codeError.innerHTML = 'Thank You';
+                nameError.style.color = 'green';
+                codeError.style.color = 'green';
+            } else if ((teacherName === 'janani' || teacherName === 'vimala') && teacherCode === 'gra108wlats#5') {
+                students.push({
+                        name: 'Pranav',
+                        id_num: 1,
+                    },{
+                        name: 'Rakkshan',
+                        id_num: 2,
+                    },{
+                        name: 'Ramakrishnan',
+                        id_num: 3,
+                    },{
+                        name: 'Vihaan',
+                        id_num: 4,
+                    },{
+                        name: 'Apurva',
+                        id_num: 5,
+                    },{
+                        name: 'Sananda',
+                        id_num: 6,
+                    },{
+                        name: 'Sivani',
+                        id_num: 7,
+                    },{
+                        name: 'Tharun',
+                        id_num: 8,
+                    })
+                teacherNameEnter.style.border = '1px solid green';
+                teacherCodeEnter.style.border = '1px solid green';
+                nameError.innerHTML = 'Thank You';
+                codeError.innerHTML = 'Thank You';
+                nameError.style.color = 'green';
+                codeError.style.color = 'green';
+            } else if ((teacherName === 'jothi muthu' || teacherName === 'narmatha') && teacherCode === 'gra212wlats#5') {
+                students.push({
+                        name: 'Lalit',
+                        id_num: 1,
+                    }, {
+                        name: 'Pratim',
+                        id_num: 2,
+                    }, {
+                        name: 'Nila',
+                        id_num: 3,
+                    }, {
+                        name: 'Shraddha',
+                        id_num: 4,
+                    }, {
+                        name: 'Gopi Gita',
+                        id_num: 5,
+                    }, {
+                        name: 'Arsan',
+                        id_num: 6,
+                    }, {
+                        name: 'Suriyan',
+                        id_num: 7,
+                    }, {
+                        name: 'Aadhi Ram',
+                        id_num: 8,
+                    }, {
+                        name: 'Mangai',
+                        id_num: 9,
+                    }, {
+                        name: 'Reena',
+                        id_num: 10,
+                    }, {
+                        name: 'Saswath',
+                        id_num: 11,
+                    }, {
+                        name: 'Kheerthana Devi',
+                        id_num: 12,
+                    })
+                teacherNameEnter.style.border = '1px solid green';
+                teacherCodeEnter.style.border = '1px solid green';
+                nameError.innerHTML = 'Thank You';
+                codeError.innerHTML = 'Thank You';
+                nameError.style.color = 'green';
+                codeError.style.color = 'green';
+            } else if ((teacherName === 'aruna' || teacherName === 'rameshwari') && teacherCode === 'gra305wlats#5') {
+                students.push({
+                        name: 'Leona',
+                        id_num: 1,
+                    }, {
+                        name: 'Tanishka',
+                        id_num: 2,
+                    }, {
+                        name: 'Sahana',
+                        id_num: 3,
+                    }, {
+                        name: 'Madhuuri',
+                        id_num: 4,
+                    }, {
+                        name: 'Kushal',
+                        id_num: 5,
+                    },)
+                teacherNameEnter.style.border = '1px solid green';
+                teacherCodeEnter.style.border = '1px solid green';
+                nameError.innerHTML = 'Thank You';
+                codeError.innerHTML = 'Thank You';
+                nameError.style.color = 'green';
+                codeError.style.color = 'green';
+            } else if ((teacherName === 'kavitha bala' || teacherName === 'hareni') && teacherCode === 'gra4A07wlats#5') {
+                students.push({
+                        name: 'Sai Theja',
+                        id_num: 1,
+                    }, {
+                        name: 'Bhavika',
+                        id_num: 2,
+                    }, {
+                        name: 'Vishalini',
+                        id_num: 3,
+                    }, {
+                        name: 'Sanjay',
+                        id_num: 4,
+                    }, {
+                        name: 'Sruthilaya',
+                        id_num: 5,
+                    }, {
+                        name: 'Selvapriyan',
+                        id_num: 6,
+                    }, {
+                        name: 'Lishanth',
+                        id_num: 7,
+                    })
+                teacherNameEnter.style.border = '1px solid green';
+                teacherCodeEnter.style.border = '1px solid green';
+                nameError.innerHTML = 'Thank You';
+                codeError.innerHTML = 'Thank You';
+                nameError.style.color = 'green';
+                codeError.style.color = 'green';
+            } else if (teacherName === 'bala' && teacherCode === 'gra4B02wlats#5') {
+                students.push({
+                        name: 'Shekar',
+                        id_num: 1,
+                    },{
+                        name: 'Anna',
+                        id_num: 1,
+                    })
+                teacherNameEnter.style.border = '1px solid green';
+                teacherCodeEnter.style.border = '1px solid green';
+                nameError.innerHTML = 'Thank You';
+                codeError.innerHTML = 'Thank You';
+                nameError.style.color = 'green';
+                codeError.style.color = 'green';
+            } else if (teacherName === 'nandhini' && teacherCode === 'gra506wlats#5') {
+                students.push({
+                        name: 'Samikshaa',
+                        id_num: 1,
+                    },{
+                        name: 'Vrithika',
+                        id_num: 2,
+                    },{
+                        name: 'Oliva',
+                        id_num: 3,
+                    },{
+                        name: 'Deepti',
+                        id_num: 4,
+                    },{
+                        name: 'Nandana Devi',
+                        id_num: 5,
+                    },{
+                        name: 'Barathi',
+                        id_num: 6,
+                    })
+                teacherNameEnter.style.border = '1px solid green';
+                teacherCodeEnter.style.border = '1px solid green';
+                nameError.innerHTML = 'Thank You';
+                codeError.innerHTML = 'Thank You';
+                nameError.style.color = 'green';
+                codeError.style.color = 'green';
+            } else if (teacherName === 'aparna' && teacherCode === 'gra602wlats#5') {
+                students.push({
+                    name: 'Aakash',
+                    id_num: 1,
+                }, {
+                    name: 'Prakash',
+                    id_num: 2,
+                })
+                teacherNameEnter.style.border = '1px solid green';
+                teacherCodeEnter.style.border = '1px solid green';
+                nameError.innerHTML = 'Thank You';
+                codeError.innerHTML = 'Thank You';
+                nameError.style.color = 'green';
+                codeError.style.color = 'green';
+            } else if (teacherName === 'meenakshi' && teacherCode === 'gra701wlats#5') {
+                students.push({
+                    name: 'Rishon',
+                    id_num: 1,
+                })
+                teacherNameEnter.style.border = '1px solid green';
+                teacherCodeEnter.style.border = '1px solid green';
+                nameError.innerHTML = 'Thank You';
+                codeError.innerHTML = 'Thank You';
+                nameError.style.color = 'green';
+                codeError.style.color = 'green';
+            } else if (teacherName === 'jothi suresh' && teacherCode === 'gra801wlats#5') {
+                students.push({
+                    name: 'Charu',
+                    id_num: 1,
+                })
+                teacherNameEnter.style.border = '1px solid green';
+                teacherCodeEnter.style.border = '1px solid green';
+                nameError.innerHTML = 'Thank You';
+                codeError.innerHTML = 'Thank You';
+                nameError.style.color = 'green';
+                codeError.style.color = 'green';
+            } else {
+                teacherNameEnter.style.border = '1px solid red';
+                teacherCodeEnter.style.border = '1px solid red';
+                nameError.innerHTML = 'Please enter a valid username';
+                codeError.innerHTML = 'Please enter a valid password';
+                nameError.style.color = 'red';
+                codeError.style.color = 'red';
+                nameError.style.display = 'block';
+                codeError.style.display = 'block';
+                
             }
+            // students.push({
+            //     name: document.getElementById('name').value,
+            //     id_num: localStorage.getItem('id'),
+            // })
+
+            localStorage.setItem('students', JSON.stringify(students));
+            // document.getElementById('current').innerHTML += `<h3>${document.getElementById('name').value}<br></h3>`;
+            
         }
 
         function increasePoints(id, pointVal, name) {
-            localStorage.setItem(id, pointVal += 1);
+            localStorage.setItem(id, pointVal + 1);           
             location.href = '../quiz/home.html';
             document.getElementById(id).innerHTML = pointVal;
         }
@@ -197,53 +501,23 @@
  
 
         function timer(time) {
-
             const timeDisp = document.getElementById('time-disp');
-
             timeDisp.innerHTML = time;
-
             timeCount();
-
             function timeCount() {
-
- 
-
                 setTimeout(() => {
-
                     if (time > 0) {
-
                         time -= 1;
-
-                        console.log(time);
-
                         timeDisp.innerHTML = time;
-
                         timeCount();
-
-                    } else {
-
-                        
-
-                        var audio = new Audio('../audios/audio.mp3');
-
- 
-
-                        
-
+                    } else {                        
+                        var audio = new Audio('../audios/audio.mp3'); 
                         audio.oncanplaythrough = function(){
-
                             audio.play();
-
                         }
-
- 
-
                     }
-
                 }, 1000);
-
             }
-
         }
 
         window.onload = function() {
@@ -256,7 +530,6 @@
                 document.querySelector('main').style.display = 'flex';
                 finishBtn.innerHTML = 'Reset Students';
                 students = JSON.parse(localStorage.getItem('students'));
-                console.log(students);
                 for (let i = 0; i < students.length; i++) {
                     document.querySelector('.students').innerHTML += `
 
@@ -270,32 +543,16 @@
                 `;
 
                     if (localStorage.getItem(`point-${students[i].id_num}`)) {
-
                         localStorage.setItem(`point-${students[i].id_num}`, localStorage.getItem(`point-${students[i].id_num}`));
-
                         document.getElementById(`point-${students[i].id_num}`).innerHTML = localStorage.getItem(`point-${students[i].id_num}`);
-
                     } else {
-
                         localStorage.setItem(`point-${students[i].id_num}`, 0)
-
-                        document.getElementById(`point-${students[i].id_num}`).innerHTML = localStorage.getItem(`point-${students[i].id_num}`);
-
-        
-
+                        document.getElementById(`point-${students[i].id_num}`).innerHTML = localStorage.getItem(`point-${students[i].id_num}`);        
                     }
-                }
-
- 
-
+                } 
             }
-
-            
-
         }
         </script>
-        
-
 </body>
 
 
